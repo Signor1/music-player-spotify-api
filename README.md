@@ -1,3 +1,6 @@
+<p align="left"><img src="https://github.com/Signor1/music-player-spotify-api/blob/476764244ef3f4c9bca7b4fef9cacaeacdf1d6cb/musicimg.png"></p>
+
+
 
 # Music Player
 ## Built with Spotify API
