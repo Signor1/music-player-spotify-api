@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false">
+<!-- head -->
+
+<head>
+  <title>Music Preview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Omemgboji Emmanuel" />
+  <meta name="description"
+    content="A preview of trending songs, top-listed musics and lastest music release in their genre and playlists">
+  <meta name="keywords"
+    content="Music, Music preview, Trending, Toplist, Lastest, lastes release, trending music, country music, music genre, music playlists">
+  <!-- CSS links -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/play.css" rel="stylesheet" type="text/css" />
+  <!-- Font Awesome icons (free version)-->
+  <link href="css/all.css" rel="stylesheet" />
+</head>
+<!-- The body opening tag -->
+
+<body>
+  <!-- Here starts the navbar -->
+  <nav class="navbar navbar-expand fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://signor-musicpreview.netlify.app">
+        <img src="img/brand.png" class="img-fluid">
+      </a>
+      <!-- Button trigger modal for select playlist-->
+      <button type="button" id="choose" data-bs-toggle="modal" data-bs-target="#selectPlaylist">Select Playlist</button>
+    </div>
+  </nav>
+  <!--End of navbar-->
+
+  <!-- Overall container wrapper -->
+  <div id="container" class="pt-5">
+    <!-- beginning of the row -->
+    <div class="row">
+      <div class="col-lg-7 d-none d-lg-block" id="img-container">
+        <img class="img-fluid" src="img/omid-armin-tF-wSmez9ag-unsplash.jpg" width="100%" alt="sideImage" />
+        <h3 class="fw-bold">---- Connect to the Trending Hits ----</h3>
+        <p>Feel De <span>Beatz</span></p>
+      </div>
+
+      <!--Column for music container starts here-->
+      <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12" id="music-holder">
+        <h3 class="fw-bold d-lg-none d-block"> Connect to the Trending Hits </h3>
+        <!-- Music container -->
+        <div class="music-container">
+          <div class="wrapper">
+            <!--Mp3 wrapper -->
+            <div class="details">
+              <div class="now-playing">PLAYING X OF Y</div>
+              <div class="track-art"></div>
+              <div class="track-name fw-bold">Track Name</div>
+              <div class="track-artist">Track Artist</div>
+            </div>
+            <!-- Slider container for music duration-->
+            <div class="slider_container">
+              <div class="current-time">00:00</div>
+              <input type="range" min="1" max="100" value="0" class="seek_slider">
+              <div class="total-duration">00:00</div>
+            </div>
+
+            <!-- Slider container for volume -->
+            <div class="slider_container">
+              <i class="fa fa-volume-down"></i>
+              <input type="range" min="1" max="100" value="99" class="volume_slider">
+              <i class="fa fa-volume-up"></i>
+            </div>
+
+            <!-- Button container for play, pause, next and prev -->
+            <div class="buttons">
+              <div class="random-track" id="randomTrack">
+                <i class="fas fa-random fa-2x" title="Random"></i>
+              </div>
+              <div class="prev-track" id="prevTrack">
+                <i class="fa fa-step-backward fa-2x" title="Previous"></i>
+              </div>
+              <div class="playpause-track" id="playpauseTrack">
+                <i class="fa fa-play-circle fa-3x" title="Play/Pause"></i>
+              </div>
+              <div class="next-track" id="nextTrack">
+                <i class="fa fa-step-forward fa-2x" title="Next"></i>
+              </div>
+              <div class="repeat-track" id="repeatTrack">
+                <i class="fa fa-redo fa-2x" title="Repeat"></i>
+              </div>
+            </div>
+            <!-- End of Buttons -->
+
+            <!-- Buttons for download and music list -->
+            <div class="download-list">
+              <div class="music-list">
+                <button type="button" id="list" data-bs-toggle="modal" data-bs-target="#musicList"><i
+                    class="fas fa-list-alt"></i> List</button>
+              </div>
+            </div>
+            <!-- End of download and music list button -->
+
+          </div>
+          <!--close tag for wrapper-->
+
+
+          <!-- Modal for select playlist-->
+          <div class="modal fade" id="selectPlaylist" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" id="content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Select A PlayList</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <form action=''>
+                      <input type='hidden' id='hidden_token'>
+                      <div class='col-12 form-group'>
+                        <label for='Genre' class='form-label'>Choose A Genre:</label>
+                        <select name='' id='select_genre' class='form-control'>
+                          <option>Select...</option>
+                        </select>
+                      </div>
+                      <div class='col-12 form-group my-3'>
+                        <label for='Genre' class='form-label'>Choose A Playlists:</label>
+                        <select name='' id='select_playlist' class='form-control'>
+                          <option>Select...</option>
+                        </select>
+                      </div>
+                      <div class='col-12 form-group my-2'>
+                        <button type='submit' id='btn_submit' class='col-6 offset-3' data-bs-dismiss="modal"
+                          aria-label="Close">Search</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="col-12">
+                    <ol type="1">
+                      <li>First of all, select a Genre</li>
+                      <li>Secondly, choose a Playlist.</li>
+                      <li>Then, click the search button.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of modal for playlist selection -->
+
+
+          <!-- Modal for music list-->
+          <div class="modal fade" id="musicList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-list-alt"></i> Music List</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                  <div class='row'>
+                    <div class='col-12'>
+                      <ol class='list-group list-group-flush  list-group-numbered song-list'>
+
+                      </ol>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- End of modal for music list -->
+
+          </div>
+          <!--End of music container-->
+
+        </div>
+        <!-- End of column for music -->
+
+      </div>
+      <!-- End of row -->
+      <!-- Footer -->
+      <footer class="footer text-center">
+        <div class="row" id="footer-area">
+          <div class="col-lg-12">
+            <p class="small mb-0 py-4 px-3" id="footer-text">Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script>
+              All Rights Reserved | <span style="color: #ad102f; font-weight: 500;">SignorMusicPreview</span> |
+              Developed By Omemgboji Emmanuel | Music APIs From Spotify
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!--End of container tag-->
+
+    <!-- JavaScript link -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/play.js"></script>
+    <script>
+      var myModal = new bootstrap.Modal(document.getElementById('selectPlaylist'), {})
+      myModal.toggle()
+
+    </script>
+</body>
+
+</html>
